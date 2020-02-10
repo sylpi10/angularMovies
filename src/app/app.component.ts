@@ -14,17 +14,20 @@ export class AppComponent {
     {
       title: 'Joker',
       year: 2019,
-      country: this.defaultCountry
+      country: this.defaultCountry,
+      shown: true
     },
     {
       title: "Avengers",
       year: 2012,
-      country: this.defaultCountry
+      country: this.defaultCountry,
+      shown: true
     },
     {
-      title: "Once upon a time in the weeeest",
+      title: "Once upon a time in the west",
       year: 1972,
-      country: 'IT'
+      country: 'IT',
+      shown: false
     }
   ];
 
@@ -32,13 +35,11 @@ export class AppComponent {
    * toggleCountry
    */
   public toggleCountry(): void {
-    // this.defaultCountry = 'US' ? 'IT' : 'US';
+    (this.defaultCountry == 'US') ? this.defaultCountry = 'IT' : this.defaultCountry = 'US';
 
-    if (this.defaultCountry == 'US') {
-      this.defaultCountry = 'IT';
-    } else {
-      this.defaultCountry = 'US'
-    }
+    this.movies.forEach((movie : any) => {
+      movie.shown = movie.country == this.defaultCountry;
+    });
   }
 
 }

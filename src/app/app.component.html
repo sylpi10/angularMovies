@@ -1,12 +1,12 @@
-<h1>Helloooooo , I'm AppComponent, my title is :  {{ title }}</h1>
+<h1>Helloooooo , I'm AppComponent, my title is :  {{ title | uppercase}}</h1>
 
-<div *ngFor="let movie of movies" [style.color]="'skyblue'">
+<div class="movie" *ngFor="let movie of movies" [style.color]="'skyblue'">
 
-  <div *ngIf="movie.country == defaultCountry"> 
+  <div *ngIf="movie.country == defaultCountry || defaultCountry == 'all'"> 
 
     <h2 [ngClass]="{'old': movie.year < 2000, 'title': true }">  {{movie.title}}  </h2>
 
-    <h2>{{movie.year}}</h2>
+    <h3>{{movie.year}} | ({{movie.country}})</h3>
 
   </div>
   
@@ -15,3 +15,9 @@
 <button 
   (click)="toggleCountry()"
 > toggle </button>
+
+<ul>
+  <li [ngClass]="{'active' : defaultCountry == 'all'} " (click)="defaultCountry = 'all'" >[all]</li>
+  <li [ngClass]="{'active' : defaultCountry == 'US'} " (click)="defaultCountry = 'US'">[us]</li>
+  <li [ngClass]="{'active' : defaultCountry == 'IT'} " (click)="defaultCountry = 'IT'">[it]</li>
+</ul>
