@@ -1,33 +1,3 @@
-<h1>Helloooooo , I'm AppComponent, my title is :  {{ title | uppercase}}</h1>
 
 
-<div class="movie" *ngFor="let movie of movies" [style.color]="'skyblue'">
-
-  <div *ngIf="movie.code == defaultCountry || defaultCountry == 'all'"> 
-
-    <h2 [ngClass]="{'old': movie.year < 2000, 'title': true }">  {{movie.title}}  </h2>
-
-    <h3>{{movie.year}} | ({{movie.country}})</h3>
-
-  </div>
-  
-</div>
-
-<button 
-  (click)="toggleCountry()"
-> toggle </button>
-
-<!-- <ul>
-  <li [ngClass]="{'active' : defaultCountry == 'all'} " (click)="defaultCountry = 'all'" >[all]</li>
-  <li [ngClass]="{'active' : defaultCountry == 'US'} " (click)="defaultCountry = 'US'">[us]</li>
-  <li [ngClass]="{'active' : defaultCountry == 'IT'} " (click)="defaultCountry = 'IT'">[it]</li>
-</ul> -->
-
-<div id="filter" >
-  <select name="" id="" size="1" [(ngModel)]="defaultCountry"> <!-- directive + evenement -->
-    <option value="all" selected>All</option>
-
-      <!-- <option value="US" >United States </option> -->
-      <option *ngFor="let code of countries" value="{{code}}"> {{code}}</option>
-  </select>
-</div>
+<app-home></app-home>
