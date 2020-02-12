@@ -1,4 +1,4 @@
-<h1> {{ title | uppercase}}</h1>
+<h1> {{ title }}</h1>
 
 <!-- <div class="movie" *ngFor="let movie of movies" [style.color]="'skyblue'">
 
@@ -10,6 +10,12 @@
 
   </div> -->
 
+  <!-- search form  -->
+  <div id="search">
+    <app-search (movies)="receiveMovies($event)"></app-search>
+  </div>
+
+  <!--  display all movies  -->
   <div class="movie">
       <div class="" *ngFor="let movie of movies">
     <mat-card class="example-card" *ngIf="movie.year == defaultYear || defaultYear == 'all'" >
@@ -30,9 +36,6 @@
       </mat-card>
     </div>
   </div>
-
-
-  
 
 <!-- <button 
   (click)="toggleCountry()"

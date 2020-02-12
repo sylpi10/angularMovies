@@ -54,7 +54,7 @@ export class HomeComponent implements OnInit {
   // ];
 
   public countries: string[] = [];
-
+  public search: string;
 
   constructor(private movieService: MovieService) {
     
@@ -75,5 +75,13 @@ export class HomeComponent implements OnInit {
     });
 
   }
+
+/**
+ * receiveMovies
+$ */
+public receiveMovies($event): void {
+  this.movies = $event;
+  console.log(`received movies : ${JSON.stringify(this.movies)}`);
+}
 
 }

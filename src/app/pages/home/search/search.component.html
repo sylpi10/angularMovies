@@ -1,0 +1,7 @@
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <mat-label>Find a Movie</mat-label>
+    <input matInput [(ngModel)]="search" name="search" placeholder="Ex: The Godfather" value="">
+  </mat-form-field>
+  <button (click)="byTitle()" mat-raised-button>ok</button>
+</form>

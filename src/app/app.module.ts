@@ -9,12 +9,15 @@ import { LoginComponent } from './pages/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/material/material.module';
 import { HttpClientModule } from "@angular/common/http";
+import { SearchComponent } from './pages/home/search/search.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
