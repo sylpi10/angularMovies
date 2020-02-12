@@ -13,6 +13,18 @@
   <!-- search form  -->
   <div id="search">
     <app-search (movies)="receiveMovies($event)"></app-search>
+
+    <form action="">
+      <mat-form-field class="mat-form">
+        <mat-label>By Year</mat-label>
+            <mat-select size="1" [(ngModel)]="defaultYear">
+                <mat-option value="all" selected>All</mat-option>
+                <mat-option *ngFor="let year of years" value="{{year}}">
+                    {{year}}
+                </mat-option>
+            </mat-select>
+      </mat-form-field>
+    </form>
   </div>
 
   <!--  display all movies  -->
@@ -22,7 +34,7 @@
         <mat-card-header >
          
           <mat-card-title [ngClass]="{'old': movie.year < 2000, 'title': true }">  {{movie.title}} </mat-card-title>
-          <mat-card-subtitle>{{movie.year}} | ({{movie.country}})</mat-card-subtitle>
+          <mat-card-subtitle>{{movie.year}} | ({{movie.director}})</mat-card-subtitle>
         </mat-card-header>
         <!-- <img mat-card-image src="{{movie.img}}" alt="movie wallpaper"> -->
         <img mat-card-image src="https://cdn-dom-p.azureedge.net/global/fr/-/media/DOM/PimDam/sorry-image-not-available.png?modified=20180213132142" alt="movie wallpaper">
@@ -56,13 +68,5 @@
   </select>
 </div> -->
 
-<mat-form-field class="mat-form">
-    <mat-label>By Year</mat-label>
-        <mat-select size="1" [(ngModel)]="defaultYear">
-            <mat-option value="all" selected>All</mat-option>
-            <mat-option *ngFor="let year of years" value="{{year}}">
-                {{year}}
-            </mat-option>
-        </mat-select>
-</mat-form-field>
+
 

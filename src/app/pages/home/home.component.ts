@@ -79,9 +79,9 @@ export class HomeComponent implements OnInit {
 /**
  * receiveMovies
 $ */
-public receiveMovies($event): void {
-  this.movies = $event;
-  console.log(`received movies : ${JSON.stringify(this.movies)}`);
-}
+  public receiveMovies($event): void {
+    this.movies = $event;
+    console.log(`received movies : ${JSON.stringify(this.movies)}`);
+  }
 
 }

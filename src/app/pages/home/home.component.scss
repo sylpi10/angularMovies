@@ -93,3 +93,12 @@ img{
   .mat-form{
       margin-left: 20%;
   }
+
+  #search{
+      display: flex;
+      box-shadow: 1px 1px 6px #ccc ;
+      justify-content: center;
+      width: 70%;
+      margin:20px auto;
+      padding: 8px 60px;
+  }
