@@ -17,7 +17,8 @@
     <form action="">
       <mat-form-field class="mat-form">
         <mat-label>By Year</mat-label>
-            <mat-select size="1" [(ngModel)]="defaultYear">
+    
+    <mat-select size="1" [(ngModel)]="defaultYear" [ngModelOptions]="{standalone: true}" > 
                 <mat-option value="all" selected>All</mat-option>
                 <mat-option *ngFor="let year of years" value="{{year}}">
                     {{year}}
@@ -29,15 +30,15 @@
 
   <!--  display all movies  -->
   <div class="movie">
-      <div class="" *ngFor="let movie of movies">
-    <mat-card class="example-card" *ngIf="movie.year == defaultYear || defaultYear == 'all'" >
+      <div class="wrapper" *ngFor="let movie of movies">
+       <mat-card class="example-card" *ngIf="movie.year == defaultYear || defaultYear == 'all'" >
         <mat-card-header >
          
           <mat-card-title [ngClass]="{'old': movie.year < 2000, 'title': true }">  {{movie.title}} </mat-card-title>
-          <mat-card-subtitle>{{movie.year}} | ({{movie.director}})</mat-card-subtitle>
+          <mat-card-subtitle class="subtitle">{{movie.year}} | ({{movie.director}})</mat-card-subtitle>
         </mat-card-header>
         <!-- <img mat-card-image src="{{movie.img}}" alt="movie wallpaper"> -->
-        <img mat-card-image src="https://cdn-dom-p.azureedge.net/global/fr/-/media/DOM/PimDam/sorry-image-not-available.png?modified=20180213132142" alt="movie wallpaper">
+        <img mat-card-image src="https://www.offer.com.cy/images/no_photo.jpg" alt="movie wallpaper">
         <mat-card-content >
                     
         </mat-card-content>

@@ -46,6 +46,11 @@ h1{
     text-align: center;
     height: 80px;
     color: #333333;
+    font-family: 'Bangers','Special Elite';
+    font-size: 3rem;
+    text-transform: uppercase;
+    color: rgb(65, 20, 65);
+    letter-spacing: .8em;
 }
 
 .movie{
@@ -55,45 +60,52 @@ h1{
     flex-wrap: wrap;
     width: 80%;
     margin: auto;
-}
 
-img{
-    width: 200px;
-    // padding:0 50px;
-    box-shadow: 3px 3px 10px #ccc,  -3px -3px 10px #ccc;
-// animation: rotateImg 1.5s infinite;
-}
-
-@keyframes rotateImg {
-    0% { transform: rotate(0deg); }
-    
-    100% { transform: rotate(360deg); }
+    button{
+        color: rgb(187, 48, 48);
     }
+    span{
+        font-size: 1.6em;
+        color: rgb(206, 48, 48);
+    }
+}
 
+// @keyframes rotateImg {
+//     0% { transform: rotate(0deg); }
+    
+//     100% { transform: rotate(360deg); }
+//     }
 
+   
 .example-card {
      width: 300px;
+    //  color: rgb(91, 171, 197);
+     color: rgb(65, 20, 65);
      display: flex;
      flex-direction: column;
      align-items: center;
      margin-bottom: 15px;
      border-top-left-radius:10px;
      border-top-right-radius:10px;
-  }
-  
-  .example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
-  }
-
-  span{
-      font-size: 1.6em;
-  }
-
-  .mat-form{
-      margin-left: 20%;
+     &.example-header-image {
+         background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+         background-size: cover;
+        }
+        .subtitle{
+            // color: rgb(47, 111, 133);
+            color: rgb(128, 46, 128);
+      }
   }
 
+  img{
+    width: 200px;
+    // padding:0 50px;
+    box-shadow: 3px 3px 10px #ddd,  -3px -3px 10px #ddd;
+    // animation: rotateImg 1.5s infinite;
+    }
+ 
+
+// form search style
   #search{
       display: flex;
       box-shadow: 1px 1px 6px #ccc ;
@@ -101,4 +113,7 @@ img{
       width: 70%;
       margin:20px auto;
       padding: 8px 60px;
-  }
+    }
+    .mat-form{
+        margin-left: 20%;
+}

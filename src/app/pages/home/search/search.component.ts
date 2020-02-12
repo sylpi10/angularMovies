@@ -26,21 +26,16 @@ export class SearchComponent implements OnInit {
 
     public reload(): void{
       if (this.searchTerm.value.trim().length == 0) {
-        console.log("have to reload all movies");
        
         let movies: Movie[] = [];
         this.movieService.all().pipe(take(1))
-    
         .subscribe((response: any[])=> {
           movies = response.map((movie: Movie) => {
             console.log(movie);
             return new Movie().deserialize(movie)
           });
           this.movies.emit(movies);
-  
-          console.log(`emit: ${JSON.stringify(movies)}`);
         });
-
       }
     }
 
@@ -61,7 +56,6 @@ export class SearchComponent implements OnInit {
     if (this.searchTerm.value.trim().length > 0) {
       let movies: Movie[] = [];
       this.movieService.byTitle(this.searchTerm.value.trim()).pipe(take(1))
-  
       .subscribe((response: any[])=> {
         movies = response.map((movie: Movie) => {
           console.log(movie);
@@ -74,7 +68,4 @@ export class SearchComponent implements OnInit {
     }
   }
 
-  // public all(): void {
-  //  
-  // }
 }
