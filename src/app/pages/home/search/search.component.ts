@@ -35,7 +35,6 @@ export class SearchComponent implements OnInit {
         this.movieService.all().pipe(take(1))
         .subscribe((response: any[])=> {
           movies = response.map((movie: Movie) => {
-            console.log(movie);
             return new Movie().deserialize(movie)
           });
           this.movies.emit(movies);
@@ -58,7 +57,7 @@ export class SearchComponent implements OnInit {
 
   /**
    * research method byTitle
-   * return movies by partial title & ignore case (back-end spec)
+   * return movies by partial title & ignore case (back-end)
    */
   public byTitle(): void{
     // const value: string = '';

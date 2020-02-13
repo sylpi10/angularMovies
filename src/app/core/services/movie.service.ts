@@ -28,8 +28,15 @@ export class MovieService {
 
   public all(): Observable<Movie[]> {
     const apiRoute: string = `${environment.apiRoot}movie`;
-    return this.httpClient.get<Movie[]>(apiRoute);
+    return this.httpClient.get<Movie[]>(
+      apiRoute
+      ).pipe(take(1),
+       map((response)=>{
+        return response.map((item)=> new Movie().deserialize(item))
+       }) 
+      );
   }
+
 
   public byTitle(search: string): Observable<Movie[]>{
     const apiRoute: string = `${environment.apiRoot}movie/byTitle?t=${search}`;

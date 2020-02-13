@@ -65,14 +65,13 @@ export class HomeComponent implements OnInit {
     const years: Set<number> = new Set<number>();
    
     this.movieService.all().pipe(take(1))
-
-    .subscribe((response: any[])=> {
-      this.movies = response.map((movie: Movie) => {
-        years.add(movie.year);
-        return new Movie().deserialize(movie)
+      .subscribe((response: any[])=> {
+        this.movies = response;
+        this.movies.map((movie: Movie)=>{
+          years.add(movie.year);
+        })
       });
       this.years = Array.from(years).sort().reverse();
-    });
 
   }
 
