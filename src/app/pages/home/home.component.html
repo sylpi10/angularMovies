@@ -30,7 +30,7 @@
 
   <!--  display all movies  -->
   <div class="movie">
-      <div class="wrapper" *ngFor="let movie of movies">
+      <div class="wrapper" *ngFor="let movie of movies | async">
        <mat-card class="example-card" *ngIf="movie.year == defaultYear || defaultYear == 'all'" >
         <mat-card-header >
          

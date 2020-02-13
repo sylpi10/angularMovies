@@ -1,8 +1,10 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { take } from 'rxjs/operators';
+import { take, tap, distinctUntilChanged, map } from 'rxjs/operators';
 import { MovieService } from 'src/app/core/services/movie.service';
 import { Movie } from 'src/app/core/models/movie';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-search',
@@ -12,7 +14,7 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
 export class SearchComponent implements OnInit {
 
 
-  @Output() movies: EventEmitter<Movie[]> = new EventEmitter<Movie[]>();
+  @Output() movies: EventEmitter<Observable<Movie[]>> = new EventEmitter<Observable<Movie[]>>();
 
   public searchForm: FormGroup;
   constructor(
@@ -30,15 +32,9 @@ export class SearchComponent implements OnInit {
      */
     public reload(): void{
       if (this.searchTerm.value.trim().length == 0) {
-       
-        let movies: Movie[] = [];
-        this.movieService.all().pipe(take(1))
-        .subscribe((response: any[])=> {
-          movies = response.map((movie: Movie) => {
-            return new Movie().deserialize(movie)
-          });
-          this.movies.emit(movies);
-        });
+        this.movies.emit(
+          this.movieService.all()
+        );
       }
     }
 
@@ -52,6 +48,14 @@ export class SearchComponent implements OnInit {
         ])
       ]
     });
+    this.searchTerm.valueChanges
+      .pipe(
+        debounceTime(350),
+        // distinctUntilChanged(),
+        map(()=>{
+        this.byTitle();
+      })
+      ).subscribe();
   }
 
 
@@ -60,13 +64,10 @@ export class SearchComponent implements OnInit {
    * return movies by partial title & ignore case (back-end)
    */
   public byTitle(): void{
-    // const value: string = '';
     if (this.searchTerm.value.trim().length > 0) {
-      // let movies: Movie[] = [];
-      this.movieService.byTitle(this.searchTerm.value.trim()).pipe(take(1))
-      .subscribe((response: any[])=> {
-        this.movies.emit(response);
-      });
+          this.movies.emit(
+            this.movieService.byTitle(this.searchTerm.value.trim())
+          )
     }
   }
 
