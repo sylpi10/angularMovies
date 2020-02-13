@@ -24,6 +24,10 @@ export class SearchComponent implements OnInit {
       return this.searchForm.controls.searchTerm;
     }
 
+    /**
+     * reload method
+     * show all movies when search bar is empty
+     */
     public reload(): void{
       if (this.searchTerm.value.trim().length == 0) {
        
@@ -51,19 +55,18 @@ export class SearchComponent implements OnInit {
     });
   }
 
+
+  /**
+   * research method byTitle
+   * return movies by partial title & ignore case (back-end spec)
+   */
   public byTitle(): void{
     // const value: string = '';
     if (this.searchTerm.value.trim().length > 0) {
-      let movies: Movie[] = [];
+      // let movies: Movie[] = [];
       this.movieService.byTitle(this.searchTerm.value.trim()).pipe(take(1))
       .subscribe((response: any[])=> {
-        movies = response.map((movie: Movie) => {
-          console.log(movie);
-          return new Movie().deserialize(movie)
-        });
-        this.movies.emit(movies);
-
-        console.log(`emit: ${JSON.stringify(movies)}`);
+        this.movies.emit(response);
       });
     }
   }
