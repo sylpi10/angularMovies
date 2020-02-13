@@ -32,8 +32,10 @@ export class SearchComponent implements OnInit {
      */
     public reload(): void{
       if (this.searchTerm.value.trim().length == 0) {
+        
         this.movies.emit(
           this.movieService.all()
+          
         );
       }
     }

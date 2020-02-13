@@ -19,7 +19,7 @@
         <mat-label>By Year</mat-label>
     
     <mat-select size="1" [(ngModel)]="defaultYear" [ngModelOptions]="{standalone: true}" > 
-                <mat-option value="all" selected>All</mat-option>
+                <mat-option value="0" selected>All</mat-option>
                 <mat-option *ngFor="let year of years" value="{{year}}">
                     {{year}}
                 </mat-option>
@@ -31,7 +31,7 @@
   <!--  display all movies  -->
   <div class="movie">
       <div class="wrapper" *ngFor="let movie of movies | async">
-       <mat-card class="example-card" *ngIf="movie.year == defaultYear || defaultYear == 'all'" >
+       <mat-card class="example-card" *ngIf="movie.year == defaultYear || defaultYear == 0" >
         <mat-card-header >
          
           <mat-card-title [ngClass]="{'old': movie.year < 2000, 'title': true }">  {{movie.title}} </mat-card-title>
