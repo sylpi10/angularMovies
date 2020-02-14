@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
 
   public doLogin(): void {
     //local persistence of user
-    if (this.userService.authenticate(this.loginForm.value)) {
+    if (this.userService.authentificate(this.loginForm.value)) {
       this.router.navigate(['home']);
     }else{
       //TODO : some snackbar to keep user informed

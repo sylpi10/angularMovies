@@ -7,18 +7,20 @@
                 </i>
             </a></li>
         <li><img src="https://i.pinimg.com/originals/da/5b/8a/da5b8a63111d601b050224c10153072b.png" alt="" width="100"></li>
-        <li *ngIf="!userService.isAuthentificate"><a [routerLink]="['login']">
+        <li *ngIf="!userService.user"><a [routerLink]="['login']">
            <i class="material-icons" title="Login">
             account_circle
             </i>
 
         </a></li>
-        
-        <li *ngIf="userService.isAuthentificate"><a [routerLink]="['login']" (click)="doLogout()">
+        <div class="logged" *ngIf="userService.user">
+            <p>Welcome {{userService.user.login}}</p>
+        <li ><a [routerLink]="['login']" (click)="doLogout()">
             <i class="material-icons log" title="Logout">
                 power_settings_new
                 </i>
         </a></li>
+    </div>
       </ul>
     </nav>
   </header>

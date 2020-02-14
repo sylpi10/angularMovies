@@ -3,6 +3,15 @@ nav{
     color:#fff;
     padding:8px 10%;
 }
+.logged{
+    // display: flex;
+    text-align: center;
+    justify-content: space-around;
+    // width: 30%;
+    p{
+        font-size: 1.4rem;
+    }
+}
 ul{
     display: flex;
     list-style-type: none;

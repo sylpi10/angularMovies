@@ -40,7 +40,7 @@ export class MovieService {
   }
 
   /**
-   * get movies by title
+   * get movies by title 
    * @param search 
    */
 
