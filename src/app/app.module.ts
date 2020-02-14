@@ -10,6 +10,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/material/material.module';
 import { HttpClientModule } from "@angular/common/http";
 import { SearchComponent } from './pages/home/search/search.component';
+import { UiModule } from './shared/ui/ui.module';
+
 
 
 @NgModule({
@@ -27,6 +29,7 @@ import { SearchComponent } from './pages/home/search/search.component';
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
+    UiModule
   ],
   providers: [],
   bootstrap: [AppComponent]

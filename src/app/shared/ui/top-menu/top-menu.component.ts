@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-top-menu',
@@ -7,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopMenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public userService: UserService
+  ) { }
+
+  public doLogout(){
+    this.userService.logout();
+  }
 
   ngOnInit(): void {
   }

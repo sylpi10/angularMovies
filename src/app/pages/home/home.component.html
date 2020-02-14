@@ -42,9 +42,10 @@
         <mat-card-content >
                     
         </mat-card-content>
-        
+
         <!-- if user is connected -->
-        <mat-card-actions>
+        <!-- *ngIf="userService.isAuthentificate" -->
+        <mat-card-actions >
           <button mat-raised-button><span>&#9829;</span> Favorite <span>&#9829;</span>  </button>
         </mat-card-actions>
       </mat-card>
