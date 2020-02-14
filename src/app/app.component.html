@@ -4,7 +4,8 @@
       <li><img src="https://i.pinimg.com/originals/da/5b/8a/da5b8a63111d601b050224c10153072b.png" alt="" width="100"></li>
       <li><a [routerLink]="['home']">Home</a></li>
       <!-- if logged in =>  logout  -->
-      <li><a [routerLink]="['login']">Login</a></li>
+      <li *ngIf=""><a [routerLink]="['login']">Login</a></li>
+      <li *ngIf=""><a [routerLink]="['login']">Logout</a></li>
     </ul>
   </nav>
 </header>
