@@ -13,7 +13,6 @@ import { debounceTime } from 'rxjs/operators';
 })
 export class SearchComponent implements OnInit {
 
-
   @Output() movies: EventEmitter<Observable<Movie[]>> = new EventEmitter<Observable<Movie[]>>();
 
   public searchForm: FormGroup;

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Movie } from '../models/movie';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable, of, BehaviorSubject } from 'rxjs';
 import { take, map } from 'rxjs/operators';
 
@@ -55,8 +55,37 @@ export class MovieService {
         return response.map((item)=> {
           this._years.add(item.year);
           this.years$.next(Array.from(this._years).sort());
-          return  new Movie().deserialize(item)
+          return new Movie().deserialize(item)
         }); 
       }));
   }
+
+
+  public byId(id: number): Observable<Movie[]>{
+    const apiRoute: string = `${environment.apiRoot}movie/${id}`;
+    return this.httpClient.get<Movie[]>(
+      apiRoute
+    )
+    .pipe(take(1),
+    map((response) => {
+      return response;
+    })
+    );
+  }
+
+  public update(movie: any): Observable<HttpResponse<any>>{
+    const apiRoot: string =  `${environment.apiRoot}movie/modify`;
+    return this.httpClient.put(
+      apiRoot, 
+      movie,
+      {
+        observe: 'response'
+      }
+    ).pipe(take(1),
+      map((response: HttpResponse<any>) => {
+      return response;
+      })
+    );
+  }
+  
 }

@@ -7,12 +7,13 @@
                 </i>
             </a></li>
         <li><img src="https://i.pinimg.com/originals/da/5b/8a/da5b8a63111d601b050224c10153072b.png" alt="" width="100"></li>
+       
         <li *ngIf="!userService.user"><a [routerLink]="['login']">
            <i class="material-icons" title="Login">
             account_circle
             </i>
-
         </a></li>
+
         <div class="logged" *ngIf="userService.user">
             <p>Welcome {{userService.user.login}}</p>
         <li ><a [routerLink]="['login']" (click)="doLogout()">

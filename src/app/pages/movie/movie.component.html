@@ -1,1 +1,40 @@
-<p>movie works!</p>
+
+
+     <mat-card class="example-card" >
+      <mat-card-header >
+       
+        <mat-card-title > 
+         <h1> {{movie.title}} </h1>
+        </mat-card-title>
+        
+        
+        <mat-card-subtitle class="subtitle"> {{movie.director.name}} | ({{movie.year}})</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="https://www.offer.com.cy/images/no_photo.jpg" alt="movie wallpaper">
+      <mat-card-content >
+                  
+      </mat-card-content>
+
+      <form action="" [formGroup]="movieForm">
+        <mat-form-field class="mat-form">
+          <mat-label>Synopsis</mat-label>
+      
+            <textarea matInput 
+            cols="40" rows="8" placeholder="set synopsis"
+            formControlName = "synopsis"
+            ></textarea>
+        </mat-form-field>
+
+        <button mat-stroked-button 
+        (click)="doUpdate()"
+        [disabled]="movieForm.invalid"
+        > Update </button>
+      </form>
+
+      <mat-card-actions>
+          <button mat-stroked-button [routerLink]="['home']">Go Back  </button>
+        <button mat-raised-button><span>&#9829;</span> Favorite <span>&#9829;</span>  </button>
+      </mat-card-actions>
+    </mat-card>
+
+    {{movie | json}}
