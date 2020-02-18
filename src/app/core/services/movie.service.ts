@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Movie } from '../models/movie';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Observable, of, BehaviorSubject } from 'rxjs';
-import { take, map } from 'rxjs/operators';
+import { Observable, of, BehaviorSubject, throwError } from 'rxjs';
+import { take, map, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -61,20 +61,27 @@ export class MovieService {
   }
 
 
-  public byId(id: number): Observable<Movie[]>{
+  public byId(id: number): Observable<any>{
     const apiRoute: string = `${environment.apiRoot}movie/${id}`;
-    return this.httpClient.get<Movie[]>(
-      apiRoute
+    return this.httpClient.get<any>(
+      apiRoute,
+      {
+        observe: 'response'
+      }
     )
     .pipe(take(1),
-    map((response) => {
-      return response;
-    })
+      map((response) => {
+        return response.body;
+      }),
+      catchError((error: any)=>{
+        console.log(`smt went wrong : ${JSON.stringify(error)}`);
+        return throwError(error.status)
+      })
     );
   }
 
   public update(movie: any): Observable<HttpResponse<any>>{
-    const apiRoot: string =  `${environment.apiRoot}movie/modify`;
+    const apiRoot: string = `${environment.apiRoot}movie/modify`;
     return this.httpClient.put(
       apiRoot, 
       movie,
@@ -83,9 +90,24 @@ export class MovieService {
       }
     ).pipe(take(1),
       map((response: HttpResponse<any>) => {
-      return response;
+      return response.body;
+      }),
+      catchError((error: any)=>{
+        console.log(`smt went wrong : ${JSON.stringify(error)}`);
+        return throwError(error.status)
       })
     );
   }
+
+  public delete(movie: Movie): Observable<Movie>{
+    const apiRoot: string = `${environment.apiRoot}movie/${movie.idMovie}`;
+    return this.httpClient.delete<Movie>(apiRoot)
+    .pipe(take(1),
+      map((response => {
+      return response;
+      })
+    ));
+  }
+
   
 }

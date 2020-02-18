@@ -20,10 +20,16 @@ const routes: Routes = [
     component: MovieComponent
   },
   {
+    path: 'id/modify',
+    component: MovieComponent
+  },
+ 
+  {
     path: 'login',
     component: LoginComponent,
     canActivate: [LoginGuard]
   },
+ 
   {
     path: '**',
     redirectTo: 'home',

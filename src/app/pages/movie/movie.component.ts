@@ -3,7 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { MovieService } from 'src/app/core/services/movie.service';
 import { AbstractControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpResponse } from '@angular/common/http';
-import { take } from 'rxjs/operators';
+import { take, map } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-movie',
@@ -17,7 +18,8 @@ export class MovieComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private movieService: MovieService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private snackBar: MatSnackBar
   ) { }
 
   // get value from form
@@ -46,14 +48,35 @@ export class MovieComponent implements OnInit {
 
 
   public doUpdate(): void{
-   console.log("okkkkkkkkkkkkkkk"); 
+   console.log("okkkkkkkkkkkkkkk update"); 
     this.movie.synopsis = this.synopsis.value; // value of movie becomes value written in form
 
     this.movieService.update(this.movie)
     .pipe(take(1)
     ).subscribe((response: HttpResponse<any>) => {
       console.log(`update done with : ${response.status}`);
+     
     }); 
+    this.snackBar.open( 'Movie Updated :-)',
+    '',
+    {
+      duration: 2600,
+    });
+    
   }
 
+    public doDelete(): void {
+      this.movieService.delete(this.movie)
+      .pipe(take(1))
+      .subscribe((response =>{
+        console.log("deleted");
+
+      }));
+
+      this.snackBar.open( 'Movie deleted :-)',
+      '',
+      {
+        duration: 2600,
+      });
+    }
 }

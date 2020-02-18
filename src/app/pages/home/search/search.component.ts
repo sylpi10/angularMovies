@@ -5,6 +5,7 @@ import { Movie } from 'src/app/core/models/movie';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-search',
@@ -18,7 +19,8 @@ export class SearchComponent implements OnInit {
   public searchForm: FormGroup;
   constructor(
     private movieService: MovieService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private snackBar: MatSnackBar
     ) { }
 
     public get searchTerm():AbstractControl {
