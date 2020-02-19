@@ -66,7 +66,9 @@ $ */
           verticalPosition: 'top'
         });
         setTimeout(()=>{
-          this.router.navigate(['../','login']);
+          this.router.navigate(['../','login'], {
+            state: [idMovie]
+          });
       }, 1600);
     
       }

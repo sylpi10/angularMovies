@@ -74,7 +74,7 @@ export class MovieService {
         return response.body;
       }),
       catchError((error: any)=>{
-        console.log(`smt went wrong : ${JSON.stringify(error)}`);
+        console.log(`smt went wrong (from movieService) : ${JSON.stringify(error)}`);
         return throwError(error.status)
       })
     );

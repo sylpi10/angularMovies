@@ -19,7 +19,9 @@ const routes: Routes = [
   {
     path: 'movie/:id',
     component: MovieComponent,
-    resolve: MovieResolver
+    resolve: {
+      movie: MovieResolver
+    }
   },
   {
     path: 'id/modify',

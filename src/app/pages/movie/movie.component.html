@@ -33,9 +33,9 @@
       </form>
 
       <mat-card-actions>
-          <button mat-stroked-button [routerLink]="['home']">Go Back  </button>
+          <button mat-stroked-button [routerLink]="['home']">&#8678; Go Back  </button>
           <button mat-stroked-button><span>&#9829;</span> Favorite <span>&#9829;</span>  </button>
-          <button mat-stroked-button [routerLink]="['id/modify']">Modify  </button>
+          <button mat-stroked-button [routerLink]="['movie/:id/modify']">Modify  </button>
         
           <button mat-stroked-button 
             (click)="doDelete()"
